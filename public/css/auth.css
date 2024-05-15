@@ -1,0 +1,42 @@
+html,
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header,
+section {
+    padding: 0px 20px;
+    font-family: "Josefin Sans", sans-serif;
+}
+header h1 {
+    margin: 20px 0;
+    text-transform: capitalize;
+}
+header p {
+    text-transform: capitalize;
+    color: #a8a8a8;
+}
+section a {
+    text-decoration: none;
+    color: #ffe797;
+}
+input {
+    min-width: 100%;
+}
+button {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px 0;
+    font-family: "Josefin Sans", sans-serif;
+    color: #ffe797;
+    margin: 20px 0;
+    background-color: #282e3d;
+    border: none;
+    border-radius: 12px;
+}
+button:hover {
+    background-color: #2c3344;
+    text-shadow: 0 0 1px #ffe797;
+}
