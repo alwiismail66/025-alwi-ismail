@@ -26,7 +26,7 @@ input {
     border-bottom: 1px solid #282e3d;
 }
 input:hover {
-    background-color: none;
+    background-color: unset;
 }
 input:focus {
     border-bottom: 1px solid #ffe797;
@@ -46,5 +46,44 @@ select:-webkit-autofill:focus {
     background-color: none;
 }
 input::placeholder {
+    text-transform: capitalize;
     color: #a8a8a8;
+}
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+textarea {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    height: 100px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 1px solid #282e3d;
+    border-radius: 8px;
+    background-color: unset;
+    resize: none;
+}
+textarea:focus {
+    border: 1px solid #ffe797;
+    outline: none;
+}
+button {
+    display: block;
+    box-sizing: border-box;
+    padding: 20px 0;
+    font-family: "Josefin Sans", sans-serif;
+    color: #ffe797;
+    text-transform: capitalize;
+    margin: 20px 0;
+    background-color: #282e3d;
+    border: none;
+    border-radius: 12px;
+}
+button:hover {
+    background-color: #2c3344;
+    text-shadow: 0 0 1px #ffe797;
+}
+label::after {
+    content: " : ";
 }

@@ -1,0 +1,86 @@
+body {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "aside main";
+    font-family: "Josefin Sans", sans-serif;
+}
+aside {
+    grid-area: aside;
+    border-right: 1px solid #282e3d;
+    text-transform: capitalize;
+    background-color: #282e3d70;
+    padding-top: 60px;
+}
+aside header h1 {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+aside header p {
+    padding: 30px 20px;
+    box-sizing: border-box;
+    color: #a8a8a8;
+}
+ul {
+    margin: 0;
+    padding: 0;
+}
+ul li {
+    list-style: none;
+    margin: 25px 10px;
+    padding: 0 0 25px 35px;
+    border-bottom: 1px solid #282e3d;
+}
+ul li a {
+    color: white;
+    text-decoration: none;
+}
+ul li a:hover {
+    color: #ffe797;
+}
+main {
+    grid-area: main;
+    padding: 60px 80px;
+    box-sizing: border-box;
+}
+main section {
+    box-sizing: border-box;
+    padding: 0 30px;
+    background-color: #282e3d70;
+    border: 1px solid #282e3d;
+    border-radius: 12px;
+    min-height: 60%;
+}
+main section header {
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin: 30px 0;
+}
+main section header h2 {
+    margin: 0;
+    padding: 0;
+    text-transform: capitalize;
+}
+form {
+    all: unset;
+}
+main section main.section {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    align-items: center;
+    padding: 0;
+}
+main section main.section label {
+    margin-left: 30px;
+    text-transform: capitalize;
+    text-align: left;
+}
+input,
+textarea {
+    margin-right: 30px;
+}
+input[type="date"],
+input[type="time"] {
+    width: 200px;
+}

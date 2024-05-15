@@ -12,3 +12,6 @@ Route::get('/signup', function () {
 Route::get('/signin', function () {
     return view('signin');
 })->name('signin');
+Route::get('/task/add', function () {
+    return view('task/addtask');
+})->name('task.add');
