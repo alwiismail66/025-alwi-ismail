@@ -18,8 +18,8 @@
         <nav>
             <ul>
                 <li><a href="">my task</a></li>
-                <li><a href="{{ route('task.add') }}">add task</a></li>
-                <li><a href="{{ route('signin') }}">logout</a></li>
+                {{-- <li><a href="{{ route('task.add') }}">add task</a></li> --}}
+                {{-- <li><a href="{{ route('signin') }}">logout</a></li> --}}
             </ul>
         </nav>
     </aside>

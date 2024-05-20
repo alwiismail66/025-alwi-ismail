@@ -172,10 +172,10 @@ table tbody td span.undone {
     background-color: #3a2737;
 }
 table tbody td span.undone:hover {
-    border: 1px solid #de567a;
+    border: 1px solid #e9498e;
     border-radius: 8px;
-    text-shadow: 0 0 1px #de567a;
-    color: #cf5878;
+    text-shadow: 0 0 1px #e9498e;
+    color: #e9498e;
     font-size: 15px;
     padding: 10px;
     margin: 0;

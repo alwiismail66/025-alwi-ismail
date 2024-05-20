@@ -16,12 +16,18 @@
             <p>login to your account</p>
         </header>
         <section>
-            <form action="" name="signup" target="">
-                <input type="email" id="email" name="email" placeholder="Email" maxlength="30" required>
-                <input type="password" id="password" name="password" placeholder="Password" maxlength="30" required>
-                <button>Sign In</button>
+            <form method="POST" action="{{ route('authenticate') }}" id="signin" autocomplete="on">
+                @csrf
+                <input class="@error('email') is-invalid @enderror" type="email" id="email" name="email"
+                    placeholder="Email" maxlength="30" value="{{ old('email') }}">
+                <input class="@error('password') is-invalid @enderror" type="password" id="password" name="password"
+                    placeholder="Password" maxlength="30">
+                @if ($errors->any())
+                    <p class="error">{{ $errors->all()[0] }}</p>
+                @endif
+                <button type="submit">Sign In</button>
             </form>
-            <p>Don't hava an account ? <a href="{{ route('signup') }}">Sign Up</a></p>
+            <p>Don't hava an account ? <a href="{{ route('userShowSignup') }}">Sign Up</a></p>
         </section>
     </main>
 </body>

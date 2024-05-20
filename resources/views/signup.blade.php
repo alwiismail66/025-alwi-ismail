@@ -16,15 +16,23 @@
             <p>create your account</p>
         </header>
         <section>
-            <form action="" name="signup" target="">
-                <input type="email" id="email" name="email" placeholder="Email" maxlength="30" required>
-                <input type="text" id="name" name="name" placeholder="Name" maxlength="30" required>
-                <input type="password" id="password" name="password" placeholder="Password" maxlength="30" required>
-                <input type="password" id="repeatPassword" name="repeat_password" placeholder="Repeat Password"
-                    maxlength="30" required>
-                <button>Sign Up</button>
+            <form method="POST" action="{{ route('userSignup') }}" id="signup" autocomplete="on">
+                @csrf
+                <input class="@error('email') is-invalid @enderror" type="email" id="email" name="email"
+                    placeholder="Email" maxlength="30" value="{{ old('email') }}">
+                <input class="@error('name') is-invalid @enderror" type="text" id="name" name="name"
+                    placeholder="Name" maxlength="30" value="{{ old('name') }}">
+                <input class="@error('password') is-invalid @enderror" type="password" id="password" name="password"
+                    placeholder="Password" maxlength="30">
+                <input class="@error('password_confirmation') is-invalid @enderror" type="password"
+                    id="password_confirmation" name="password_confirmation" placeholder="Repeat Password"
+                    maxlength="30">
+                @if ($errors->any())
+                    <p class="error">{{ $errors->all()[0] }}</p>
+                @endif
+                <button type="submit">Sign Up</button>
             </form>
-            <p>Already have an account ? <a href="{{ route('signin') }}">Sign In</a></p>
+            <p>Already have an account ? <a href="{{ route('userShowSignin') }}">Sign In</a></p>
         </section>
     </main>
 </body>

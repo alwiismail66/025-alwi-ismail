@@ -30,7 +30,7 @@
             <form action="">
                 <main class="section">
                     <label for="name">Name</label>
-                    <input id="name" type="text">
+                    <input id="name" type="text" placeholder="John Doe">
                     <label for="notice">notice</label>
                     <textarea name="" id="notice" placeholder="example : tell tom to play"></textarea>
                     <label for="date">for date</label>

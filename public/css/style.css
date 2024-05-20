@@ -32,6 +32,17 @@ input:focus {
     border-bottom: 1px solid #ffe797;
     outline: none;
 }
+input.is-valid {
+    border-bottom: 1px solid #46b989;
+}
+input.is-invalid {
+    border-bottom: 1px solid #e9498e;
+}
+input.is-invalid:focus,
+input.is-valid:focus {
+    border-bottom: 1px solid #ffe797;
+    outline: none;
+}
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
