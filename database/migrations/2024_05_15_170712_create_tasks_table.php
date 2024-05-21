@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('name');
-            $table->string('notice', length: 300);
-            $table->date('date');
+            $table->string('notice', length: 300)->nullable();
+            $table->date('for_date');
             $table->time('start_at');
             $table->time('duration');
             $table->decimal('progress', total: 5, places: 2)->unsigned()->default(0);

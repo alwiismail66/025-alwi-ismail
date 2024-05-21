@@ -16,7 +16,7 @@
             <p>login to your account</p>
         </header>
         <section>
-            <form method="POST" action="{{ route('authenticate') }}" id="signin" autocomplete="on">
+            <form method="POST" action="{{ route('userAuthenticate') }}" id="signin" autocomplete="on">
                 @csrf
                 <input class="@error('email') is-invalid @enderror" type="email" id="email" name="email"
                     placeholder="Email" maxlength="30" value="{{ old('email') }}">

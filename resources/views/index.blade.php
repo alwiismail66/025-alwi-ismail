@@ -13,13 +13,13 @@
     <aside>
         <header>
             <h1>my to do list</h1>
-            <p>hello , buddy</p>
+            <p>hello , {{ auth()->user()->name }}</p>
         </header>
         <nav>
             <ul>
                 <li><a href="">my task</a></li>
-                {{-- <li><a href="{{ route('task.add') }}">add task</a></li> --}}
-                {{-- <li><a href="{{ route('signin') }}">logout</a></li> --}}
+                <li><a href="{{ route('taskShowAdd') }}">add task</a></li>
+                <li><a href="{{ route('logout') }}">logout</a></li>
             </ul>
         </nav>
     </aside>
@@ -27,7 +27,6 @@
         <section>
             <header>
                 <h2># sunday , 10-05-2025</h2>
-                <p>01.40 AM</p>
             </header>
             <main class="section">
                 <table>

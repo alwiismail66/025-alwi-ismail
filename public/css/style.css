@@ -28,7 +28,8 @@ input {
 input:hover {
     background-color: unset;
 }
-input:focus {
+input:focus,
+textarea:focus {
     border-bottom: 1px solid #ffe797;
     outline: none;
 }
@@ -37,6 +38,9 @@ input.is-valid {
 }
 input.is-invalid {
     border-bottom: 1px solid #e9498e;
+}
+textarea.is-invalid {
+    border: 1px solid #e9498e;
 }
 input.is-invalid:focus,
 input.is-valid:focus {
@@ -97,4 +101,8 @@ button:hover {
 }
 label::after {
     content: " : ";
+}
+p.error {
+    height: 20px;
+    color: #e9498e;
 }

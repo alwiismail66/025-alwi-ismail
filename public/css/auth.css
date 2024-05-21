@@ -17,10 +17,6 @@ header p {
     text-transform: capitalize;
     color: #a8a8a8;
 }
-p.error {
-    height: 20px;
-    color: #e9498e;
-}
 section a {
     text-decoration: none;
     color: #ffe797;
