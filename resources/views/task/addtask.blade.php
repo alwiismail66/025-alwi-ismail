@@ -27,7 +27,7 @@
             <header>
                 <h2># create new task</h2>
             </header>
-            <form action="{{ route('taskStore') }}" method="POST" id="task-add" autocomplete="on">
+            <form action="{{ route('task.store') }}" method="POST" id="task-add" autocomplete="on">
                 @csrf
                 <main class="section">
                     <label for="name-task">name task</label>

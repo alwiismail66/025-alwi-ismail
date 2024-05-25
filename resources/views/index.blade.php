@@ -18,7 +18,7 @@
         <nav>
             <ul>
                 <li><a href="">my task</a></li>
-                <li><a href="{{ route('taskShowAdd') }}">add task</a></li>
+                <li><a href="{{ route('task.showAdd') }}">add task</a></li>
                 <li><a href="{{ route('logout') }}">logout</a></li>
             </ul>
         </nav>
@@ -26,7 +26,7 @@
     <main>
         <section>
             <header>
-                <h2># sunday , 10-05-2025</h2>
+                <h2># {{ date('l,d-m-Y') }}</h2>
             </header>
             <main class="section">
                 <table>
@@ -38,60 +38,71 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="task">
-                                <h4>playing soccer </h4>
-                                <p class="notice">notice : Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                                    Doloribus
-                                    consectetur cum illum voluptatem. Voluptates, tempora!
-                                </p>
-                                <p class="startat">start at : 08.00 AM - 09.00 AM</p>
-                                <p class="duration">Duration : 1 Hour</p>
-                                <p class="progress">progress : 100%</p>
-                            </td>
-                            <td class="task">-</td>
-                            <td class="task">
-                                <a href=""><span class="done">done</span></a>
-                                <a href=""><span class="undone">undone</span></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="task" rowspan="4">
-                                <h4>learnig web programming </h4>
-                                <p class="notice">notice : Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                                    Doloribus
-                                    consectetur cum illum voluptatem. Voluptates, tempora!
-                                </p>
-                                <p class="startat">start at : 08.00 AM - 09.00 AM</p>
-                                <p class="duration">Duration : 1 Hour</p>
-                                <p class="progress">progress : 30%</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="task">learn html</td>
-                            <td class="task">
-                                Completed
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="task">learn css</td>
-                            <td class="task">
-                                not completed
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="task">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas magnam ad
-                                animi assumenda fuga tenetur libero voluptates modi amet reiciendis.</td>
-                            <td class="task">
-                                <a href=""><span class="done">done</span></a>
-                                <a href=""><span class="undone">undone</span></a>
-                            </td>
-                        </tr>
+                        <form action="{{ route('task.toggleStatus') }}" method="POST">
+                            @method('PUT') @csrf
+                            @if (isset($data))
+                                @forelse ($data as $task)
+                                    <tr>
+                                        <td class="task main" rowspan="{{ count($task->subtasks) + 1 }}">
+                                            <h4>{{ $task->name }}</h4>
+                                            <p class="notice">notice : {{ $task->notice ?? ' - ' }}
+                                            </p>
+                                            <p class="startat">start at : {{ substr($task->start_at, 0, 5) }}</p>
+                                            <p class="duration">Duration : {{ substr($task->duration, 0, 5) }}</p>
+                                            <p class="progress">progress : {{ $task->progress }}%</p>
+                                            <p class="status">status : {{ $task->status??'not complete' }}</p>
+                                        </td>
+                                        @if (count($task->subtasks))
+                                            @foreach ($task->subtasks as $subtask)
+                                    </tr>
+                                    <tr>
+                                        <td class="task">{{ $subtask->name }}</td>
+                                        <td class="task">
+                                            @if (filled($subtask->status))
+                                                <p>{{ $subtask->status }}</p>
+                                            @else
+                                                <button name="subtask" class="done" type="submit"
+                                                    value="subtask,100,{{ $subtask->id }}">done</button>
+                                                <button name="subtask" class="undone" type="submit"
+                                                    value="subtask,0,{{ $subtask->id }}">undone</button>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <td class="task"> - </td>
+                                <td class="task">
+                                    @if (filled($task->status))
+                                        <p>{{ $task->status }}</p>
+                                    @else
+                                        <button name="task" class="done" type="submit"
+                                            value="task,100,{{ $task->id }}">done</button>
+                                        <button name="task" class="undone" type="submit"
+                                            value="task,0,{{ $task->id }}">undone</button>
+                                    @endif
+                                </td>
+                                </tr>
+                            @endif
+                        @empty
+                            <tr>
+                                <td colspan="3">
+                                    <h4 style="text-align: center;">no task for today</h4>
+                                </td>
+                            </tr>
+                            @endforelse
+                        @else
+                            <tr>
+                                <td colspan="3">
+                                    <h4 style="text-align: center;">no task for today</h4>
+                                </td>
+                            </tr>
+                            @endif
+                        </form>
                     </tbody>
                     <tfoot>
                         <tr>
                             <td colspan="2">overall progress completed</td>
-                            <td>80%</td>
+                            <td>{{ $overallProgress }}%</td>
                         </tr>
                     </tfoot>
                 </table>

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->time('start_at');
             $table->time('duration');
             $table->decimal('progress', total: 5, places: 2)->unsigned()->default(0);
+            $table->enum('status', ['complete', 'not_complete'])->nullable();
             $table->timestamps();
         });
     }

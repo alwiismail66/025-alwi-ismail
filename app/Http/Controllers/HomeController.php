@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\HomeService;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -9,9 +10,17 @@ class HomeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function showHome()
+    public function showHome(HomeService $homeService)
     {
-        return view('index');
+        $data = $homeService->getTaskToday();
+        $progress = 0;
+        foreach ($data as $task) {
+            $progress += $task->progress;
+        }
+        $overallProgress = $progress / count($data);
+        return view('index')
+            ->with('data', $data)
+            ->with('overallProgress', $overallProgress);
     }
 
     /**

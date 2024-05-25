@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('task_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('name');
-            $table->enum('status', ['complete', 'not_complete'])->default('not_complete');
+            $table->enum('status', ['complete', 'not_complete'])->nullable();
             $table->timestamps();
         });
     }

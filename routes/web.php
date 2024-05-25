@@ -22,9 +22,12 @@ Route::controller(UserController::class)->group(function () {
     });
 });
 
-Route::controller(TaskController::class)->group(function () {
+Route::controller(TaskController::class)->name('task.')->group(function () {
     Route::middleware('auth')->group(function () {
-        Route::get('/task/add', 'showAdd')->name('taskShowAdd');
-        Route::post('/task/add', 'store')->name('taskStore');
+        Route::prefix('task')->group(function () {
+            Route::get('/add', 'showAdd')->name('showAdd');
+            Route::post('/add', 'store')->name('store');
+        });
+        Route::put('/', 'toggleStatus')->name('toggleStatus');
     });
 });

@@ -105,11 +105,11 @@ table tbody tr td {
     padding: 25px 10px;
     text-transform: capitalize;
 }
-table tbody tr td:first-child {
-    vertical-align: top;
-}
 table tbody td.task {
     text-align: center;
+}
+table tbody td.main {
+    vertical-align: top;
 }
 table tbody tr td h4 {
     color: #ffe797;
@@ -121,22 +121,16 @@ table tbody tr td p {
     margin: 10px 0 3px 0;
 }
 table tbody tr td p.notice {
+    padding: 5px 0;
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
     color: #a8a8a8;
     text-align: left;
 }
-table tbody tr td p.startat {
-    padding: 0;
-    font-size: 14px;
-    text-align: left;
-}
-table tbody tr td p.duration {
-    padding: 0;
-    font-size: 14px;
-    text-align: left;
-}
-table tbody tr td p.progress {
+p.startat,
+p.duration,
+p.progress,
+p.status {
     padding: 0;
     font-size: 14px;
     text-align: left;
@@ -144,16 +138,17 @@ table tbody tr td p.progress {
 table tbody tr td a {
     text-decoration: none;
 }
-table tbody td span.done {
+table tbody td button.done {
+    margin: 0;
+    display: inline-block;
     border: 1px solid #132728;
-
     border-radius: 8px;
     color: #3e975a;
     font-size: 15px;
     padding: 10px;
     background-color: #132728;
 }
-table tbody td span.done:hover {
+table tbody td button.done:hover {
     border: 1px solid #46b989;
     border-radius: 8px;
     text-shadow: 0 0 1px #46b989;
@@ -162,16 +157,17 @@ table tbody td span.done:hover {
     padding: 10px;
     background-color: #13281f;
 }
-table tbody td span.undone {
+table tbody td button.undone {
+    margin: 0;
+    display: inline-block;
     border: 1px solid #3a2737;
     border-radius: 8px;
     color: #a95a67;
     font-size: 15px;
     padding: 10px;
-    margin: 0;
     background-color: #3a2737;
 }
-table tbody td span.undone:hover {
+table tbody td button.undone:hover {
     border: 1px solid #e9498e;
     border-radius: 8px;
     text-shadow: 0 0 1px #e9498e;
