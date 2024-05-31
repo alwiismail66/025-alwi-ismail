@@ -106,3 +106,15 @@ p.error {
     height: 20px;
     color: #e9498e;
 }
+a.create-task {
+    display: inline-block;
+    border-radius: 8px;
+    padding: 5px;
+    color: black;
+    background-color: #ffe797;
+    transition: ease 0.3s;
+    font-size: 15px;
+}
+a.create-task:hover {
+    font-size: 18px;
+}

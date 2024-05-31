@@ -13,11 +13,19 @@ class HomeController extends Controller
     public function showHome(HomeService $homeService)
     {
         $data = $homeService->getTaskToday();
-        $progress = 0;
-        foreach ($data as $task) {
-            $progress += $task->progress;
+        if (filled($data))
+        {
+            $progress = 0;
+            foreach ($data as $task)
+            {
+                $progress += $task->progress;
+            }
+            $overallProgress = round($progress / count($data), 2) . '%';
         }
-        $overallProgress = $progress / count($data);
+        else
+        {
+            $overallProgress = null;
+        }
         return view('index')
             ->with('data', $data)
             ->with('overallProgress', $overallProgress);

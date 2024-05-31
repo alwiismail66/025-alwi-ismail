@@ -8,33 +8,41 @@ use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class SubTaskRepository
 {
-    public function storeSubTask($subTask, $task_id)
+    public function storeSubTask ( $name, $task_id )
     {
-        return SubTask::create([
+        return SubTask::create ( [
             'task_id' => $task_id,
-            'name' => $subTask
-        ]);
+            'name'    => $name,
+        ] );
     }
-    public function updateStatusSubtask($id, $status)
+    public function updateSubtask ( $name, $task_id )
     {
-        return SubTask::where('id', $id)->update(['status' => $status]);
+        return SubTask::findOrFail ( $task_id )->update ( [
+            'name' => $name,
+        ] );
+    }
+    public function updateStatusSubtask ( $id, $status )
+    {
+        return SubTask::where ( 'id', $id )->update ( [ 'status' => $status ] );
     }
 
-    public function getTaskIdAndProgressSubtask($id)
+    public function getTaskIdAndProgressSubtask ( $id )
     {
-        return SubTask::where('id', $id)->with([
-            'task' => function (Builder $query) {
-                $query->select('id');
-                $query->withCount('subtasks as total_subtask');//withcount di ibaratkan addselect jadi tidak perlu di select ketika hanya ingin menampilkan hasil dari kolom dari withcount nya saja
-                $query->withCount([
-                    'subtasks as total_subtask_complete' => function (Builder $query) {
-                    $query->where('status', 'complete');
+        return SubTask::where ( 'id', $id )->with ( [
+            'task' => function (Builder $query)
+            {
+                $query->select ( 'id' );
+                $query->withCount ( 'subtasks as total_subtask' );//withcount di ibaratkan addselect jadi tidak perlu di select ketika hanya ingin menampilkan hasil dari kolom dari withcount nya saja
+                $query->withCount ( [
+                    'subtasks as total_subtask_complete' => function (Builder $query)
+                {
+                    $query->where ( 'status', 'complete' );
                 }
-                ]);
-                $query->selectRaw('(select total_subtask_complete/total_subtask*100) as progress');//di selectraw bisa mendapatkan col berisi hasil dari query yang sedang di jalankan contoh ketika selectraw('tasks.id as id')id disini berisi 1
+                ] );
+                $query->selectRaw ( '(select total_subtask_complete/total_subtask*100) as progress' );//di selectraw bisa mendapatkan col berisi hasil dari query yang sedang di jalankan contoh ketika selectraw('tasks.id as id')id disini berisi 1
             }
-        ])
-            ->select('id', 'task_id')
-            ->first();
+        ] )
+            ->select ( 'id', 'task_id' )
+            ->first ();
     }
 }

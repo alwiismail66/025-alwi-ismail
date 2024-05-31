@@ -185,9 +185,76 @@ table tfoot td {
     text-transform: capitalize;
     padding: 20px;
 }
+table tfoot.my-task td {
+    font-size: 14px;
+    text-transform: capitalize;
+    padding: 0 20px;
+}
+table tfoot.my-task td div.page {
+    display: inline-block;
+    text-align: center;
+    margin: 0 5px;
+}
+table tfoot.my-task td div.arrow {
+    display: inline-block;
+    font-size: 20px;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0 5px;
+}
+a.page {
+    text-decoration: none;
+    color: white;
+}
+a.page:hover {
+    text-decoration: none;
+    color: #ffe797;
+}
 table tfoot td:first-child {
     border-bottom-left-radius: 8px;
 }
 table tfoot td:last-child {
     border-bottom-right-radius: 8px;
+}
+.detail,
+.edit,
+.delete {
+    margin: 0;
+    display: inline-block;
+    border-radius: 8px;
+    font-size: 15px;
+    padding: 10px;
+}
+.detail {
+    border: 1px solid #3d3d32;
+    color: #cab97c;
+    background-color: #3d3d32;
+}
+.detail:hover {
+    border: 1px solid #ffe797;
+    color: #ffe797;
+    background-color: #3d3d32;
+    text-shadow: 0 0 1px #ffe797;
+}
+.edit {
+    border: 1px solid #1b1634;
+    color: #4e32db;
+    background-color: #1b1634;
+}
+.edit:hover {
+    border: 1px solid #4c00ff;
+    color: #4c00ff;
+    background-color: #1b1634;
+    text-shadow: 0 0 1px #4c00ff;
+}
+.delete {
+    border: 1px solid #3a2737;
+    color: #a95a67;
+    background-color: #3a2737;
+}
+.delete:hover {
+    border: 1px solid #e9498e;
+    color: #e9498e;
+    background-color: #3a2737;
+    text-shadow: 0 0 1px #e9498e;
 }

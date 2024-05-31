@@ -10,24 +10,49 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Task extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'user_id', 'notice', 'for_date', 'start_at', 'duration'];
+    protected $fillable = [ 'name', 'user_id', 'notice', 'for_date', 'start_at', 'duration', 'expired' ];
 
-    protected function status(): Attribute
+    protected function status () : Attribute
     {
-        return Attribute::make(
-            get: function ($value) {
-                if (filled($value) && $value == 'not_complete') {
-                    $value = explode('_', $value);
-                    $value = $value[0] . " " . $value[1];
+        return Attribute::make (
+            get:
+            function ($value)
+            {
+                if ( filled ( $value ) && $value == 'not_complete' )
+                {
+                    $value = explode ( '_', $value );
+                    $value = $value[ 0 ] . " " . $value[ 1 ];
                     return $value;
-                } else {
+                }
+                else
+                {
                     return $value;
                 }
             }
         );
     }
-    public function subtasks(): HasMany
+    protected function startAt () : Attribute
     {
-        return $this->hasMany(SubTask::class);
+        return Attribute::make (
+            get:
+            function ($value)
+            {
+                return substr ( $value, 0, 5 );
+            }
+        );
+    }
+    protected function duration () : Attribute
+    {
+        return Attribute::make (
+            get:
+            function ($value)
+            {
+                return substr ( $value, 0, 5 );
+            }
+        );
+    }
+    public function subtasks () : HasMany
+    {
+        return $this->hasMany ( SubTask::class);
     }
 }
