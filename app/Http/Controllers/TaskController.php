@@ -75,8 +75,12 @@ class TaskController extends Controller
     public function showTask ( Request $request, TaskService $taskService )
     {
         $listDate = $taskService->getPage ( $request->page ?? 1 );
-        $data = $taskService->getTaskAll ( $listDate, $request->page ?? 1 );
 
+        if ( blank ( $listDate ) )
+        {
+            return view ( 'task.task' );
+        }
+        $data = $taskService->getTaskAll ( $listDate, $request->page ?? 1 );
         $page = $request->page <= 1 || $request->page <= 10 ? 1 : $request->page;
         return view ( 'task.task' )->with ( 'data', $data )->with ( 'dates', $listDate )->with ( 'page', $page );
     }

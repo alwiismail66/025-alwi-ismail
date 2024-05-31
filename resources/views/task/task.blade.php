@@ -39,7 +39,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if (filled($data))
+                            @if (isset($data) && filled($data))
                                 @foreach ($data as $task)
                                     <tr>
                                         <td class="task main" style="vertical-align: middle"
@@ -91,25 +91,28 @@
                                     </div>
                                 </td>
                                 <td colspan="2">
-                                    <div class="arrow">
-                                        <a class="page"
-                                            href="{{ route('task.showTask', ['page' => $page > 1 ? $page - 1 : $page]) }}">
-                                            <span>&lt;</span>
-                                        </a>
-                                    </div>
-                                    @foreach ($dates as $date)
-                                        <div class="page">
-                                            <a class="page" href="{{ route('task.showTask', ['page' => $page]) }}">
-                                                <p>{{ $date['date'] }}</p>
-                                                <p>{{ $page++ }}</p>
+                                    @if (isset($data) and filled($data))
+                                        <div class="arrow">
+                                            <a class="page"
+                                                href="{{ route('task.showTask', ['page' => $page > 1 ? $page - 1 : $page]) }}">
+                                                <span>&lt;</span>
                                             </a>
                                         </div>
-                                    @endforeach
-                                    <div class="arrow">
-                                        <a class="page" href="{{ route('task.showTask', ['page' => $page]) }}">
-                                            <span>&gt;</span>
-                                        </a>
-                                    </div>
+                                        @foreach ($dates as $date)
+                                            <div class="page">
+                                                <a class="page"
+                                                    href="{{ route('task.showTask', ['page' => $page]) }}">
+                                                    <p>{{ $date['date'] }}</p>
+                                                    <p>{{ $page++ }}</p>
+                                                </a>
+                                            </div>
+                                        @endforeach
+                                        <div class="arrow">
+                                            <a class="page" href="{{ route('task.showTask', ['page' => $page]) }}">
+                                                <span>&gt;</span>
+                                            </a>
+                                        </div>
+                                    @endif
                                 </td>
                             </tr>
                         </tfoot>
